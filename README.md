@@ -1,7 +1,9 @@
 # Format matcher
-[![Build Status](https://img.shields.io/travis/andrewdacenko/format-matcher/master.svg?style=flat-square)](https://travis-ci.org/andrewdacenko/format-matcher) 
 
-Find best format for input string using prepared formats. 
+Find best format for input string using prepared formats.
+
+
+[![Build Status](https://img.shields.io/travis/andrewdacenko/format-matcher/master.svg?style=flat-square)](https://travis-ci.org/andrewdacenko/format-matcher) 
 
 ## Usage
 
