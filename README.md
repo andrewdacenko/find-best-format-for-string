@@ -7,25 +7,32 @@ Find best format for input string using prepared formats.
 
 ## Usage
 
-Install via `npm i format-matcher -S`
+Install
+
+```
+npm i format-matcher -S
+```
 
 Require and use 
 
-    
-    const makeFinder = require('format-matcher');
+```javascript
+const makeFinder = require('format-matcher');
 
-    const formats = ['A 9', '9 A'];
-    const find = makeFinder(formats);
+const formats = ['A 9', '9 A'];
+const find = makeFinder(formats);
 
-    const input = 'H1';
-    const format = find(input);
-    
-    format === 'A 9'; // true
-    
+const input = 'H1';
+const format = find(input);
+
+format === 'A 9'; // true
+```
 
 ### Format pattern
 
 Following format pattern is used `/^[A9 ]+$/`.
+
+Thus any of 'A 9', ' A9', ' A 9' would be the same
+for matcher and first format would be used.
 
 ### Input pattern
 
