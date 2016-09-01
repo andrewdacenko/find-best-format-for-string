@@ -28,15 +28,17 @@ describe('Matcher', () => {
     });
 
     describe('find', () => {
+        "use strict";
+
         let formats;
         let find;
 
         beforeEach(() => {
             formats = [
-                "AA9 9AA",
-                "A99 9AA",
-                "A9A 9AA",
-                "9AA 9AA"
+                'AA9 9AA',
+                'A99 9AA',
+                'A9A 9AA',
+                '9AA 9AA'
             ];
 
             find = makeFinder(formats);
