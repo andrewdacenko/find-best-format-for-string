@@ -1,28 +1,22 @@
 const should = require('chai').should();
 
-const makeFinder = require('../index');
+const makeMatcher = require('../index');
 
 describe('Matcher', () => {
     describe('make', () => {
         it('should throw error when no formats provided', () => {
             should.throw(() => {
-                makeFinder();
+                makeMatcher();
             });
 
             should.throw(() => {
-                makeFinder([]);
+                makeMatcher([]);
             });
         });
 
         it('should throw when format of mask is not string', () => {
             should.throw(() => {
-                makeFinder([1]);
-            });
-        });
-
-        it('should throw when format of mask does not follow pattern', () => {
-            should.throw(() => {
-                makeFinder(['A0A']);
+                makeMatcher([1]);
             });
         });
     });
@@ -41,7 +35,7 @@ describe('Matcher', () => {
                 '9AA 9AA'
             ];
 
-            find = makeFinder(formats);
+            find = makeMatcher(formats);
         });
 
         it('should get best format for input string', () => {

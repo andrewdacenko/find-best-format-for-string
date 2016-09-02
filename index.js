@@ -1,7 +1,5 @@
 const levenshtein = require('fast-levenshtein');
 
-const FORMAT_PATTERN = /^[A9 ]+$/;
-
 function makeMatcher(formats) {
     if (!Array.isArray(formats)) {
         throw new Error('invalid formats type');
@@ -11,22 +9,14 @@ function makeMatcher(formats) {
         throw new Error('please provide formats');
     }
 
-    const masks = formats.map((format, index) => {
-        if (typeof format !== 'string') {
-            throw Error(`format ${format} at ${index} index is not a string`);
-        }
+    const masks = formats.map((format) => {
+        const string = cleanString(format);
 
-        if (!FORMAT_PATTERN.test(format)) {
-            throw Error(`format ${format} at ${index} index doesn't match pattern ${FORMAT_PATTERN}`);
-        }
-
-        return {format, string: format.replace(' ', '')}
+        return {format, string};
     });
 
     return function findFormat(string) {
-        string = string.replace(/[A-z]/g, 'A');
-        string = string.replace(/[0-9]/g, '9');
-        string = string.replace(/![A|9]/g, '');
+        string = cleanString(string);
 
         const solution = {
             mask: masks[0],
@@ -43,6 +33,16 @@ function makeMatcher(formats) {
             return solution;
         }, solution).mask.format;
     }
+}
+
+function cleanString(string) {
+    if (typeof string !== 'string') {
+        throw Error(`${string} at index is not a string`);
+    }
+
+    return string.replace(/[A-z]/g, 'A')
+        .replace(/[0-9]/g, '9')
+        .replace(/![A9\s-]/g, '');
 }
 
 module.exports = makeMatcher;
